@@ -1,54 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://dibw22but71qk"]
+[gd_scene load_steps=9 format=3 uid="uid://dibw22but71qk"]
 
-[ext_resource type="Texture2D" uid="uid://twp5bnb0ola" path="res://assets/UI/Ribbons/Ribbon_Blue_Connection_Right.png" id="3_g6tae"]
-[ext_resource type="Texture2D" uid="uid://bw77qb30jd30b" path="res://assets/UI/Icons/Regular_08.png" id="4_mlag6"]
-[ext_resource type="Texture2D" uid="uid://h5ms76va5o1h" path="res://assets/UI/Banners/Banner_Horizontal.png" id="4_sxjit"]
-[ext_resource type="Texture2D" uid="uid://b7hj1fq8siw7a" path="res://assets/UI/Icons/Regular_09.png" id="5_n3x6m"]
-[ext_resource type="Texture2D" uid="uid://cshhyv6leb7b5" path="res://assets/UI/Banners/Banner_Connection_Right.png" id="7_o424i"]
+[ext_resource type="Texture2D" uid="uid://cibd6w5fsik2" path="res://assets/UI/Banners/Carved_3Slides.png" id="1_jagtb"]
+[ext_resource type="Texture2D" uid="uid://bb4xbaplmko58" path="res://assets/UI/Banners/Banner_Connection_Right_Big.png" id="6_0gsq6"]
+[ext_resource type="Texture2D" uid="uid://ki4wan74i8lb" path="res://assets/Resources/Resources/G_Idle.png" id="6_a0o0y"]
+[ext_resource type="LabelSettings" uid="uid://h2pnv61w8p4u" path="res://new_label_settings.tres" id="6_jji5v"]
+[ext_resource type="Texture2D" uid="uid://dvowrklpa1tnu" path="res://assets/Resources/Resources/W_Idle.png" id="7_cyd1r"]
+[ext_resource type="Texture2D" uid="uid://bhfi1cvx6ny1u" path="res://assets/UI/Buttons/Button_Blue.png" id="7_q83v6"]
+[ext_resource type="Texture2D" uid="uid://t5asu7q57ig3" path="res://assets/UI/Buttons/Button_Blue_Pressed.png" id="8_mrxxs"]
+[ext_resource type="Texture2D" uid="uid://btu62ur3jvpsa" path="res://assets/Resources/Resources/M_Idle_(NoShadow).png" id="8_rqy7g"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6uji3"]
-texture = ExtResource("4_sxjit")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-1:1/0 = 0
-1:2/0 = 0
-0:2/0 = 0
-0:1/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nvud0"]
-texture = ExtResource("7_o424i")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-0:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-1:1/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-2:1/0 = 0
-2:2/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0xfpk"]
-texture = ExtResource("3_g6tae")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_421ji"]
-tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_6uji3")
-sources/1 = SubResource("TileSetAtlasSource_nvud0")
-sources/2 = SubResource("TileSetAtlasSource_0xfpk")
-
-[sub_resource type="Animation" id="Animation_jy3sd"]
-resource_name = "ControlMenuSlide"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy681"]
-_data = {
-"ControlMenuSlide": SubResource("Animation_jy3sd")
-}
-
-[node name="Control" type="Control"]
+[node name="ControlUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,34 +17,132 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -329.0
+offset_bottom = 72.0
+grow_horizontal = 0
+tooltip_text = "?"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("1_jagtb")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="ResourceInfo" type="HBoxContainer" parent="MarginContainer2/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GoldInfo" type="HBoxContainer" parent="MarginContainer2/MarginContainer/ResourceInfo"]
+layout_mode = 2
+
+[node name="Gold" type="Label" parent="MarginContainer2/MarginContainer/ResourceInfo/GoldInfo"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "100
+"
+label_settings = ExtResource("6_jji5v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Container" type="TextureRect" parent="MarginContainer2/MarginContainer/ResourceInfo/GoldInfo"]
+layout_mode = 2
+texture = ExtResource("6_a0o0y")
+expand_mode = 3
+
+[node name="WoodInfo" type="HBoxContainer" parent="MarginContainer2/MarginContainer/ResourceInfo"]
+layout_mode = 2
+
+[node name="Wood" type="Label" parent="MarginContainer2/MarginContainer/ResourceInfo/WoodInfo"]
+layout_mode = 2
+text = "200"
+label_settings = ExtResource("6_jji5v")
+
+[node name="Container2" type="TextureRect" parent="MarginContainer2/MarginContainer/ResourceInfo/WoodInfo"]
+layout_mode = 2
+texture = ExtResource("7_cyd1r")
+expand_mode = 2
+
+[node name="FoodInfo2" type="HBoxContainer" parent="MarginContainer2/MarginContainer/ResourceInfo"]
+layout_mode = 2
+
+[node name="Food" type="Label" parent="MarginContainer2/MarginContainer/ResourceInfo/FoodInfo2"]
+layout_mode = 2
+text = "200"
+label_settings = ExtResource("6_jji5v")
+
+[node name="FoodAccount" type="TextureRect" parent="MarginContainer2/MarginContainer/ResourceInfo/FoodInfo2"]
+layout_mode = 2
+texture = ExtResource("8_rqy7g")
+expand_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -304.0
-offset_top = -192.0
+offset_left = -368.0
+offset_top = -352.0
+offset_right = 16.0
+offset_bottom = 32.0
 grow_horizontal = 0
 grow_vertical = 0
+texture = ExtResource("6_0gsq6")
 
-[node name="TileMap" type="TileMap" parent="MarginContainer"]
-tile_set = SubResource("TileSet_421ji")
-format = 2
-layer_0/name = "main"
-layer_0/tile_data = PackedInt32Array(-1, 1, 0, 65535, 1, 1, 131071, 1, 1, -65536, 65537, 0, 0, 65537, 1, 65536, 65537, 1, -65535, 65537, 0, 1, 65537, 1, 65537, 65537, 1, 65538, 65537, 1, 2, 65537, 1, -65534, 65537, 0, -65533, 131073, 0, 65539, 131073, 1, 131075, 131073, 2, 3, 131073, 1, 131074, 65537, 2, 131073, 65537, 2, 131072, 65537, 2, 196607, 1, 2)
-layer_1/name = "sub"
-layer_1/z_index = -1
-layer_1/tile_data = PackedInt32Array(65535, 2, 0)
+[node name="TextureButton" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 88.0
+offset_right = 144.0
+offset_bottom = 152.0
+texture_normal = ExtResource("7_q83v6")
+texture_pressed = ExtResource("8_mrxxs")
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
-layout_mode = 2
-toggle_mode = true
-texture_normal = ExtResource("4_mlag6")
-texture_pressed = ExtResource("5_n3x6m")
+[node name="TextureButton2" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 88.0
+offset_right = 224.0
+offset_bottom = 152.0
+texture_normal = ExtResource("7_q83v6")
+texture_pressed = ExtResource("8_mrxxs")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_vy681")
-}
+[node name="TextureButton3" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 88.0
+offset_right = 304.0
+offset_bottom = 152.0
+texture_normal = ExtResource("7_q83v6")
+texture_pressed = ExtResource("8_mrxxs")
+
+[node name="TextureButton4" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 168.0
+offset_right = 224.0
+offset_bottom = 232.0
+texture_normal = ExtResource("7_q83v6")
+texture_pressed = ExtResource("8_mrxxs")
+
+[node name="TextureButton5" type="TextureButton" parent="TextureRect"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 168.0
+offset_right = 144.0
+offset_bottom = 232.0
+texture_normal = ExtResource("7_q83v6")
+texture_pressed = ExtResource("8_mrxxs")
