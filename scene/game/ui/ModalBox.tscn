@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://buhigy57vctvk"]
+
+[ext_resource type="Texture2D" uid="uid://dcjpprpr5ssp0" path="res://assets/UI/Banners/Banner_Vertical.png" id="1_mbtgv"]
+
+[sub_resource type="Animation" id="Animation_0l4i3"]
+resource_name = "Open"
+length = 0.1
+step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.15),
+"transitions": PackedFloat32Array(1, 0.297302, 1, 1),
+"update": 0,
+"values": [Vector2(1, 0), Vector2(1, 0.5), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tlemh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h5vsu"]
+_data = {
+"Open": SubResource("Animation_0l4i3"),
+"RESET": SubResource("Animation_tlemh")
+}
+
+[node name="ModalBox" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(96, 96)
+texture = ExtResource("1_mbtgv")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h5vsu")
+}

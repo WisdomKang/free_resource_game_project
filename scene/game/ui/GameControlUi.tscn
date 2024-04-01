@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dibw22but71qk"]
+[gd_scene load_steps=19 format=3 uid="uid://dibw22but71qk"]
 
+[ext_resource type="Script" path="res://scene/game/ui/GameControlUi.gd" id="1_6goy3"]
 [ext_resource type="Texture2D" uid="uid://cibd6w5fsik2" path="res://assets/UI/Banners/Carved_3Slides.png" id="1_jagtb"]
 [ext_resource type="Texture2D" uid="uid://bb4xbaplmko58" path="res://assets/UI/Banners/Banner_Connection_Right_Big.png" id="6_0gsq6"]
 [ext_resource type="Texture2D" uid="uid://ki4wan74i8lb" path="res://assets/Resources/Resources/G_Idle.png" id="6_a0o0y"]
@@ -8,6 +9,67 @@
 [ext_resource type="Texture2D" uid="uid://bhfi1cvx6ny1u" path="res://assets/UI/Buttons/Button_Blue.png" id="7_q83v6"]
 [ext_resource type="Texture2D" uid="uid://t5asu7q57ig3" path="res://assets/UI/Buttons/Button_Blue_Pressed.png" id="8_mrxxs"]
 [ext_resource type="Texture2D" uid="uid://btu62ur3jvpsa" path="res://assets/Resources/Resources/M_Idle_(NoShadow).png" id="8_rqy7g"]
+[ext_resource type="Texture2D" uid="uid://berphr4nupenn" path="res://assets/UI/Icons/Regular_01.png" id="9_sughj"]
+[ext_resource type="Texture2D" uid="uid://bdc0hfqd11tin" path="res://assets/UI/Icons/Regular_02.png" id="10_h64wq"]
+[ext_resource type="Texture2D" uid="uid://dtu3abwoui1hv" path="res://assets/UI/Icons/Regular_03.png" id="11_103fk"]
+[ext_resource type="Texture2D" uid="uid://bcbtuaketbcre" path="res://assets/UI/Icons/Regular_04.png" id="12_bfgbe"]
+[ext_resource type="Texture2D" uid="uid://wh11drivemtp" path="res://assets/UI/Icons/Regular_05.png" id="13_i5hhd"]
+
+[sub_resource type="Animation" id="Animation_55ucv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(840, 288)]
+}
+
+[sub_resource type="Animation" id="Animation_al3la"]
+resource_name = "close_control_panel"
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(840, 288), Vector2(1056, 288)]
+}
+
+[sub_resource type="Animation" id="Animation_fdic8"]
+resource_name = "open_control_panel"
+length = 0.5
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.14, 0.26),
+"transitions": PackedFloat32Array(1, 0.353554, 1, 1),
+"update": 0,
+"values": [Vector2(1056, 288), Vector2(790, 288), Vector2(790, 288), Vector2(840, 288)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybadm"]
+_data = {
+"RESET": SubResource("Animation_55ucv"),
+"close_control_panel": SubResource("Animation_al3la"),
+"open_control_panel": SubResource("Animation_fdic8")
+}
 
 [node name="ControlUI" type="Control"]
 layout_mode = 3
@@ -16,15 +78,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6goy3")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -329.0
+offset_left = 816.0
+offset_right = 1203.0
 offset_bottom = 72.0
-grow_horizontal = 0
 tooltip_text = "?"
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -89,17 +149,10 @@ expand_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -368.0
-offset_top = -352.0
-offset_right = 16.0
-offset_bottom = 32.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = 840.0
+offset_top = 288.0
+offset_right = 1224.0
+offset_bottom = 672.0
 texture = ExtResource("6_0gsq6")
 
 [node name="TextureButton" type="TextureButton" parent="TextureRect"]
@@ -111,6 +164,12 @@ offset_bottom = 152.0
 texture_normal = ExtResource("7_q83v6")
 texture_pressed = ExtResource("8_mrxxs")
 
+[node name="TextureRect" type="TextureRect" parent="TextureRect/TextureButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("9_sughj")
+
 [node name="TextureButton2" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
 offset_left = 160.0
@@ -119,6 +178,12 @@ offset_right = 224.0
 offset_bottom = 152.0
 texture_normal = ExtResource("7_q83v6")
 texture_pressed = ExtResource("8_mrxxs")
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect/TextureButton2"]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("10_h64wq")
 
 [node name="TextureButton3" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
@@ -129,6 +194,12 @@ offset_bottom = 152.0
 texture_normal = ExtResource("7_q83v6")
 texture_pressed = ExtResource("8_mrxxs")
 
+[node name="TextureRect3" type="TextureRect" parent="TextureRect/TextureButton3"]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("11_103fk")
+
 [node name="TextureButton4" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
 offset_left = 160.0
@@ -138,6 +209,12 @@ offset_bottom = 232.0
 texture_normal = ExtResource("7_q83v6")
 texture_pressed = ExtResource("8_mrxxs")
 
+[node name="TextureRect4" type="TextureRect" parent="TextureRect/TextureButton4"]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("12_bfgbe")
+
 [node name="TextureButton5" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
 offset_left = 80.0
@@ -146,3 +223,16 @@ offset_right = 144.0
 offset_bottom = 232.0
 texture_normal = ExtResource("7_q83v6")
 texture_pressed = ExtResource("8_mrxxs")
+
+[node name="TextureRect5" type="TextureRect" parent="TextureRect/TextureButton5"]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("13_i5hhd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ybadm")
+}
+
+[connection signal="pressed" from="TextureRect/TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,7 +1,10 @@
 class_name State
 extends Node
 
-var state_machine = null
+var state_machine : StateMachine = null
+
+
+
 
 func handle_input( _event : InputEvent ) -> void:
 	pass

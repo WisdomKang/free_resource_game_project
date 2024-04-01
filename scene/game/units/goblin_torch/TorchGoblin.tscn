@@ -1,0 +1,178 @@
+[gd_scene load_steps=17 format=3 uid="uid://cpb4fun6rixk1"]
+
+[ext_resource type="Texture2D" uid="uid://c0wtpvnyiw8vr" path="res://assets/Factions/Goblins/Troops/Torch/Blue/Torch_Blue.png" id="1_dih8n"]
+[ext_resource type="Script" path="res://scene/game/units/base_unit/State_Machine.gd" id="1_ie6nh"]
+[ext_resource type="Script" path="res://scene/game/units/goblin_torch/TorchGoblin.gd" id="1_k2lg7"]
+[ext_resource type="Script" path="res://scene/game/units/goblin_torch/states/Idle.gd" id="2_vqy6l"]
+[ext_resource type="Script" path="res://scene/game/units/goblin_torch/states/Run.gd" id="4_mt788"]
+[ext_resource type="Script" path="res://scene/game/units/goblin_torch/states/Attack.gd" id="5_84l45"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vs8l3"]
+radius = 8.0
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_mkyxo"]
+resource_name = "Idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_gdi5o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_31r6q"]
+resource_name = "attack_down_01"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [21, 22, 23, 24, 25, 26]
+}
+
+[sub_resource type="Animation" id="Animation_3ewl3"]
+resource_name = "attack_side_01"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_wlikv"]
+resource_name = "attack_up_01"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31, 32, 33]
+}
+
+[sub_resource type="Animation" id="Animation_b7010"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3m8ld"]
+_data = {
+"Idle": SubResource("Animation_mkyxo"),
+"RESET": SubResource("Animation_gdi5o"),
+"attack_down_01": SubResource("Animation_31r6q"),
+"attack_side_01": SubResource("Animation_3ewl3"),
+"attack_up_01": SubResource("Animation_wlikv"),
+"run": SubResource("Animation_b7010")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xeuro"]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_prj5b"]
+radius = 300.0
+
+[node name="TorchGoblin" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+z_as_relative = false
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_k2lg7")
+state_machine = NodePath("StateMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vs8l3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -32)
+texture = ExtResource("1_dih8n")
+hframes = 7
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3m8ld")
+}
+autoplay = "Idle"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_ie6nh")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_vqy6l")
+move_speed = null
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("4_mt788")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_84l45")
+
+[node name="AttackDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetectArea"]
+shape = SubResource("CircleShape2D_xeuro")
+debug_color = Color(0.992157, 0, 0.266667, 0.419608)
+
+[node name="EnemyDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectArea"]
+shape = SubResource("CircleShape2D_prj5b")
+debug_color = Color(0.407843, 0.607843, 0, 0.419608)
+
+[connection signal="body_entered" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_entered"]
+[connection signal="body_exited" from="EnemyDetectArea" to="." method="_on_enemy_detect_area_body_exited"]
