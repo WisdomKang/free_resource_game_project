@@ -125,7 +125,6 @@ radius = 56.0
 radius = 300.0
 
 [node name="TorchGoblin" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
-z_as_relative = false
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_k2lg7")
@@ -154,7 +153,6 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("2_vqy6l")
-move_speed = null
 
 [node name="Run" type="Node" parent="StateMachine"]
 script = ExtResource("4_mt788")

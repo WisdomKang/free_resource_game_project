@@ -1,12 +1,7 @@
-class_name Uint
-
+class_name UintBase
 extends CharacterBody2D
 
-var speed : int = 100
+var move_speed : int = 100
 var health_point : int = 100
-
-func _physics_process(delta):
-	pass
-	
-func _input(event):
-	pass
+var damega : int = 100
+var attack_speed : int = 100
